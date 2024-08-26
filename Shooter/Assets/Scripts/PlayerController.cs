@@ -21,12 +21,20 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.A))
         {
-            GameObject playerBulletGo = Object.Instantiate(this.playerBulletPrefab);
+            Fire();
+            /*GameObject playerBulletGo = Object.Instantiate(this.playerBulletPrefab);
             Vector3 tagetPosition = this.transform.position;
             tagetPosition.y += 0.798f;
             playerBulletGo.transform.position = tagetPosition;
-            //GameObject bullet = Instantiate(playerBulletPrefab, firePoint.position, firePoint.rotation);
+            //GameObject bullet = Instantiate(playerBulletPrefab, firePoint.position, firePoint.rotation);*/
         }
+    }
+
+    public void Fire()
+    {
+        GameObject playerBullet = Instantiate(this.playerBulletPrefab, transform.position,transform.rotation);
+        Rigidbody2D rigidbody2D = playerBullet.GetComponent<Rigidbody2D>();
+        rigidbody2D.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
     }
 
     public void Move()
